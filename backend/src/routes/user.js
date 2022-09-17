@@ -2,17 +2,18 @@ const express = require("express");
 const { createHash } = require("crypto");
 const { getCollection, addDoc, query, getDocs, where } = require("../firebase");
 const { userSkills } = require("../algolia");
+const { fromSummary } = require("../openai");
 
 const router = express.Router();
 
-router.post("/register", async (req, res) => {
-  const { firstName, lastName, email, password, skills } = req.body;
+router.post("/create", async (req, res) => {
+  const { name, email, password, description } = req.body;
   const hash = createHash("sha256").update(password).digest("hex");
+  const skills = await fromSummary(description);
   const usersCollection = getCollection("users");
   try {
     const ref = await addDoc(usersCollection, {
-      firstName,
-      lastName,
+      name,
       email,
       password: hash,
       skills,
