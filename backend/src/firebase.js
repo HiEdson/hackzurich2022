@@ -7,6 +7,7 @@ const {
   addDoc,
   where,
   query,
+  documentId,
 } = require("firebase/firestore");
 
 const firebaseConfig = {
@@ -27,4 +28,32 @@ function getCollection(name) {
   return collection(db, name);
 }
 
-module.exports = { getCollection, addDoc, where, query, getDocs };
+async function getCausesFromId(causes_id) {
+  const causes = [];
+  const q = query(
+    getCollection("causes"),
+    where(documentId(), "in", causes_id)
+  );
+  const snapshots = await getDocs(q);
+  snapshots.forEach((snap) => causes.push(snap.data()));
+  return causes;
+}
+
+async function getUsersFromId(users_id) {
+  const users = [];
+  const q = query(getCollection("users"), where(documentId(), "in", users_id));
+  const snapshots = await getDocs(q);
+  snapshots.forEach((snap) => users.push(snap.data()));
+  return users;
+}
+
+module.exports = {
+  getCollection,
+  addDoc,
+  where,
+  query,
+  getDocs,
+  documentId,
+  getUsersFromId,
+  getCausesFromId,
+};
