@@ -1,13 +1,14 @@
 const express = require("express");
 const { userSkills, problemSkills } = require("../algolia");
 const { getCollection, addDoc, getDocs } = require("../firebase");
+const { fromProblem } = require("../openai");
 
 const router = express.Router();
 
 router.post("/create", async (req, res) => {
-  const { title, description, email, name, skills } = req.body;
+  const { title, description, email, name } = req.body;
   const causesCollection = getCollection("causes");
-
+  const skills = await fromProblem(description);
   try {
     const ref = await addDoc(causesCollection, {
       title,
