@@ -5,7 +5,6 @@ const {
   getDocs,
   collection,
   addDoc,
-  getDocs,
   where,
   query,
 } = require("firebase/firestore");

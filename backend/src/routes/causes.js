@@ -29,7 +29,7 @@ router.post("/list", async (req, res) => {
   const causes = [];
   try {
     const docs = await getDocs(causesCollection);
-    docs.forEach((doc) => causes.push(doc.data));
+    docs.forEach((doc) => causes.push(doc.data()));
   } catch (e) {
     console.log("error occured", e);
     return res.json({ status: "error" });

@@ -1,7 +1,6 @@
 const express = require("express");
-con;
 const { createHash } = require("crypto");
-const { getCollection, addDoc, query, getDocs } = require("../firebase");
+const { getCollection, addDoc, query, getDocs, where } = require("../firebase");
 
 const router = express.Router();
 
@@ -30,8 +29,8 @@ router.post("/login", async (req, res) => {
   const usersCollection = getCollection("users");
   const q = query(usersCollection, where("email", "==", email));
   const snapshot = await getDocs(q);
-  // snapshot.docs.
-  const user = snapshot.docs?.[0]?.data;
+  // snapshot.docs.forEach((doc) => console.log("doc", doc.data()));
+  const user = snapshot.docs?.[0]?.data();
 
   if (!user) return res.json({ status: "error" });
   if (user.password != hash) return res.json({ status: "error" });
