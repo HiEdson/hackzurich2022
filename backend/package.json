@@ -8,6 +8,6 @@
     "openai": "^3.0.0"
   },
   "scripts": {
-    "backend": "nodemon ./src/server.js"
+    "start": "nodemon ./src/server.js"
   }
 }
