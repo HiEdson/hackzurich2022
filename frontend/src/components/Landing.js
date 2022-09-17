@@ -21,8 +21,7 @@ const Landing =()=>{
                             <h3>Want to volunteer?</h3>
                             <small>Tell us about your experience and we will match you with great causes</small>
                             <br/>
-                            <button className="btn btn-primary">Join causes</button>
-
+                            <Link to={'/volunteer'}><button className="btn btn-primary">Join causes</button></Link>
                         </div>
                     </div>
                 </div>
@@ -30,7 +29,6 @@ const Landing =()=>{
                 <div className='col-sm-7 landingImgDiv'>
                     <img src={LandingImg} />
                 </div>
-
             </div>
         </div>
     )

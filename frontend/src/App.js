@@ -4,6 +4,8 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Landing from './components/Landing';
 import Organization from './components/OrgPanel';
+import Volunteer from './components/Volunteer';
+
 function App() {
   return (
     <div className="App">
@@ -11,14 +13,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />}></Route>
-          {/* <Route index element={<Home />} /> */}
           <Route path="/organization" element={<Organization />} />
-          <Route path="/volunteer" element={<Organization />} />
-          {/* <Route path="*" element={<NoPage />} /> */}
-
+          <Route path="/volunteer" element={<Volunteer />} />
         </Routes>
       </BrowserRouter>
-      {/* <Landing/> */}
     </div>
   );
 }

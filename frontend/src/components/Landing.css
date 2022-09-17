@@ -1,18 +1,20 @@
-.landing{
+.landing {
     width: 100%;
     height: 100vh;
     overflow-x: hidden;
     color: #333;
 }
-.landingImgDiv img{
-width: 100%;
+
+.landingImgDiv img {
+    width: 100%;
     height: 80vh;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-        margin-top: 9vh;
+    margin-top: 9vh;
 
 }
-.landingTextDiv{
+
+.landingTextDiv {
     margin-top: 15vh;
 }
