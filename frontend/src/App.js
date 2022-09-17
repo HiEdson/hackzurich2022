@@ -7,15 +7,15 @@ import Organization from './components/OrgPanel';
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />}></Route>
-            {/* <Route index element={<Home />} /> */}
-            <Route path="/organization" element={<Organization />} />
-            <Route path="/volunteer" element={<Organization />} />
-            {/* <Route path="*" element={<NoPage />} /> */}
-          
+          {/* <Route index element={<Home />} /> */}
+          <Route path="/organization" element={<Organization />} />
+          <Route path="/volunteer" element={<Organization />} />
+          {/* <Route path="*" element={<NoPage />} /> */}
+
         </Routes>
       </BrowserRouter>
       {/* <Landing/> */}
