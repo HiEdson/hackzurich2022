@@ -6,7 +6,7 @@ let init = false;
 
 const dbName = "hackZurich2022";
 
-export async function getCollection(name) {
+async function getCollection(name) {
   if (!init) {
     await initializeDb();
     init = true;
@@ -27,6 +27,8 @@ async function initializeDb() {
   skills.createIndex({ userid: 1 });
   skills.createIndex({ userid: 1, name: 1 }, { unique: true });
 }
+
+module.exports = { getCollection };
 
 // users schema
 // user = {
