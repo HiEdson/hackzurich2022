@@ -11,6 +11,6 @@ app.use(express.json());
 app.use("/users", usersRoute);
 app.use("/skills", skillsRoute);
 
-app.listen(3000, () => {
-  console.log("started listening at 3000");
+app.listen(5000, () => {
+  console.log("started listening at 5000");
 });
