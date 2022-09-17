@@ -18,4 +18,30 @@ export async function getCollection(name) {
   return collection;
 }
 
-async function initializeDb() {}
+async function initializeDb() {
+  const users = await getCollection("users");
+  users.createIndex({ email: 1 }, { unique: true });
+  users.createIndex({ skills: 1 });
+
+  const skills = await getCollection("skills");
+  skills.createIndex({ userid: 1 });
+  skills.createIndex({ userid: 1, name: 1 }, { unique: true });
+}
+
+// users schema
+// user = {
+//     id,
+//     firstName,
+//     lastName,
+//     email,
+//     password,
+//     skills: [skill1, skill2, ...]
+// }
+
+// skills schema
+// skill = {
+//     id,
+//     userid,
+//     name,
+//     score: 100 as default
+// }
