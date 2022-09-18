@@ -21,52 +21,33 @@ async function problemSkills(problemid, skills) {
 }
 
 async function getUsersFromSkills(skills) {
-  const users_id = {};
+  const users_id = new Set();
   const requests = skills.map((skill) => ({
     indexName: "users_skills",
     query: skill,
   }));
   const results = await client.search({ requests });
   for (let result of results.results)
-    for (let hit of result.hits) {
-      let count = users_id[hit.objectID] || 0;
-      users_id[hit.objectID] = count + 1;
-    }
-  let _users = Object.keys(users_id);
-  _users.sort((x, y) => {
-    if (users_id[x] > users_id[y]) return -1;
-    if (users_id[x] < users_id[y]) return -1;
-    return 0;
-  });
-  const users = await getUsersFromId(_users, users_id);
+    for (let hit of result.hits) users_id.add(hit.objectID);
+  const users = await getUsersFromId(Array.from(users_id), skills);
   return users;
 }
 
 async function getCausesFromSkills(skills) {
-  const causes_id = {};
+  const causes_id = new Set();
   const requests = skills.map((skill) => ({
     indexName: "problems_skills",
     query: skill,
   }));
   const results = await client.search({ requests });
   for (let result of results.results)
-    for (let hit of result.hits) {
-      let count = causes_id[hit.objectID] || 0;
-      causes_id[hit.objectID] = count + 1;
-    }
-  let _causes = Object.keys(causes_id);
-  // console.log(causes_id);
-  _causes.sort((x, y) => {
-    if (causes_id[x] > causes_id[y]) return -1;
-    if (causes_id[x] < causes_id[y]) return -1;
-    return 0;
-  });
-  const causes = await getCausesFromId(_causes, causes_id);
+    for (let hit of result.hits) causes_id.add(hit.objectID);
+  const causes = await getCausesFromId(Array.from(causes_id), skills);
   return causes;
 }
 
 (async () => {
-  // let d = await getCausesFromSkills(["software"]);
+  // let d = await getCausesFromSkills(["teacher"]);
   // let d = await getUsersFromId(["cleaner", "TTNsmGCtCgKNeMIrrOqX"]);
   // console.log(d);
   // for (let i of d.results) console.log(i.hits);

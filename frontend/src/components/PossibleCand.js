@@ -35,8 +35,10 @@ const PossibleCand = () => {
                     {user.skills.slice(0, 4).map((skill) => (
                       <span class="badge rounded-pill bg-success">{skill}</span>
                     ))}
-                    <br/>
-                    <div className="badge bg-secondary">x% Match</div>
+                    <br />
+                    <div className="badge bg-secondary">
+                      {Math.round(user.probability * 10000) / 100}% Match
+                    </div>
                   </div>
                 </div>
               </div>
