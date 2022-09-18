@@ -30,7 +30,12 @@ const SeeCauses = () => {
                     <div className="mb-1">
                       <i class="bi bi-building"></i>
                       {cause.name}
-                    <div className="badge bg-secondary" style={{marginLeft:"10px"}}>x% Match</div>
+                      <div
+                        className="badge bg-secondary"
+                        style={{ marginLeft: "10px" }}
+                      >
+                        {Math.round(cause.probability * 10000) / 100}% Match
+                      </div>
                     </div>
                     <a href="#" class="btn btn-primary">
                       Contact {cause.name}
