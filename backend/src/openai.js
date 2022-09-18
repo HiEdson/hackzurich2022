@@ -51,7 +51,7 @@ async function fromSummary(summary) {
 
 async function fromProblem(problem) {
   const _skills = await makePrompt(
-    `"${problem}" In order for me to be able to solve the above problem make a bulleted list of skills i shoud have:`
+    `"${problem}" In order for me to be able to solve the above problem make a bulleted list of top two skills i shoud have:`
   );
   const _jobs = await makePrompt(
     `"${problem}" Make a bulleted list of professionals who can solve the above problem:`
