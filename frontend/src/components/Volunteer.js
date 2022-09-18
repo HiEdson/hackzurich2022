@@ -23,7 +23,7 @@ const Volunteer = () => {
       });
       if (resp.data.status == "done"){
         setResponseLoad(false)
-        navigate('/seecauses', { state: { causes: resp.data.causes } })
+        navigate('/seecauses', { state: { causes : resp.data.causes } })
         console.log("user created successfully");
       }
       else console.log("user not created");
