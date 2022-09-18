@@ -1,5 +1,5 @@
 const express = require("express");
-const { userSkills, problemSkills } = require("../algolia");
+const { userSkills, problemSkills, getUsersFromSkills } = require("../algolia");
 const { getCollection, addDoc, getDocs } = require("../firebase");
 const { fromProblem } = require("../openai");
 
@@ -9,6 +9,7 @@ router.post("/create", async (req, res) => {
   const { title, description, email, name } = req.body;
   const causesCollection = getCollection("causes");
   const skills = await fromProblem(description);
+  const users = [];
   try {
     const ref = await addDoc(causesCollection, {
       title,
@@ -19,15 +20,15 @@ router.post("/create", async (req, res) => {
       createdAt: new Date().getTime(),
     });
     await problemSkills(ref.id, skills);
+    users = await getUsersFromSkills(skills);
   } catch (e) {
     console.log("error occured", e);
-    return res.json({ status: "error" });
+    return res.json({ status: "error", users: [] });
   }
-  return res.json({ status: "done" });
+  return res.json({ status: "done", users });
 });
 
 router.post("/list", async (req, res) => {
-  const { title, description, email, name, skills } = req.body;
   const causesCollection = getCollection("causes");
   const causes = [];
   try {
