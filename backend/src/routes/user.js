@@ -10,7 +10,7 @@ router.post("/create", async (req, res) => {
   const { name, email, password, description } = req.body;
   const hash = createHash("sha256").update(password).digest("hex");
   const skills = await fromSummary(description);
-  const causes = [];
+  let causes = [];
   const usersCollection = getCollection("users");
   try {
     const ref = await addDoc(usersCollection, {
