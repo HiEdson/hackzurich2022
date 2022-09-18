@@ -15,7 +15,7 @@ const SeeCauses=()=>{
 
             <div className="container mt-5">
                 <div className="row">
-                    <div className=" col-sm-6">
+                    <div className="col-sm-6">
                         <div class="card w-100" style={{ backgroundColor: "rgb(182 224 232)" }}  >
                             <div class="card-body">
                                 <h4 class="card-title">Card title</h4>
@@ -30,7 +30,10 @@ const SeeCauses=()=>{
                         <div class="card w-100" style={{ backgroundColor: "rgb(182 224 232)" }}  >
                             <div class="card-body">
                                 <h4 class="card-title">Card title</h4>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                    With supporting text below as a natural lead-in to additional content.
+                                    With supporting text below as a natural lead-in to additional content.
+                                    </p>
                                 <div><i class="bi bi-building"></i>Company name</div>
                                 <a href="#" class="btn btn-primary">Contact company</a>
                             </div>
