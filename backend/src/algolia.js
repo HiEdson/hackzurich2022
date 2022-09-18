@@ -38,7 +38,7 @@ async function getUsersFromSkills(skills) {
     if (users_id[x] < users_id[y]) return -1;
     return 0;
   });
-  const users = await getUsersFromId(_users);
+  const users = await getUsersFromId(_users, users_id);
   return users;
 }
 
@@ -55,27 +55,27 @@ async function getCausesFromSkills(skills) {
       causes_id[hit.objectID] = count + 1;
     }
   let _causes = Object.keys(causes_id);
-  console.log(causes_id);
+  // console.log(causes_id);
   _causes.sort((x, y) => {
     if (causes_id[x] > causes_id[y]) return -1;
     if (causes_id[x] < causes_id[y]) return -1;
     return 0;
   });
-  const causes = await getCausesFromId(_causes);
+  const causes = await getCausesFromId(_causes, causes_id);
   return causes;
 }
 
-// (async () => {
-//   // let d = await getCausesFromSkills(["software"]);
-//   // let d = await getUsersFromId(["cleaner", "TTNsmGCtCgKNeMIrrOqX"]);
-//   // console.log(d);
-//   // for (let i of d.results) console.log(i.hits);
-//   // await problemSkills("prob1", ["cleaning services", "laundry"]);
-//   //   await client.saveObject({
-//   //     indexName: "skills_index",
-//   //     body: { objectID: "emma", skills: ["programming", "programmer"] },
-//   //   });
-// })();
+(async () => {
+  // let d = await getCausesFromSkills(["software"]);
+  // let d = await getUsersFromId(["cleaner", "TTNsmGCtCgKNeMIrrOqX"]);
+  // console.log(d);
+  // for (let i of d.results) console.log(i.hits);
+  // await problemSkills("prob1", ["cleaning services", "laundry"]);
+  //   await client.saveObject({
+  //     indexName: "skills_index",
+  //     body: { objectID: "emma", skills: ["programming", "programmer"] },
+  //   });
+})();
 
 module.exports = {
   userSkills,
