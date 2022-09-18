@@ -37,7 +37,7 @@ async function getCausesFromId(causes_id, causes_map) {
   const causes = [];
   const q = query(
     getCollection("causes"),
-    where(documentId(), "in", causes_id)
+    where(documentId(), "in", causes_id.slice(0, 10))
   );
   const snapshots = await getDocs(q);
   snapshots.forEach((snap) =>
@@ -53,7 +53,10 @@ async function getUsersFromId(users_id, users_map) {
   for (let key of Object.keys(users_map))
     users_map[key] = users_map[key] * (100 / total);
   const users = [];
-  const q = query(getCollection("users"), where(documentId(), "in", users_id));
+  const q = query(
+    getCollection("users"),
+    where(documentId(), "in", users_id.slice(0, 10))
+  );
   const snapshots = await getDocs(q);
   snapshots.forEach((snap) =>
     users.push({ ...snap.data(), probability: users_map[snap.id] })
