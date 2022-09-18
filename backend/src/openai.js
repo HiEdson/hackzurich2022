@@ -17,7 +17,7 @@ async function makePrompt(prompt, max_tokens = 100) {
   const response = await openai.createCompletion({
     model: "text-davinci-002",
     prompt,
-    temperature: 0.7,
+    temperature: 0.0,
     max_tokens,
   });
   const choices = response.data.choices;
@@ -32,10 +32,10 @@ async function makePrompt(prompt, max_tokens = 100) {
 
 async function fromSummary(summary) {
   const _jobs = await makePrompt(
-    `As a career consultant make a list of jobs you would recommend to a student with the following summary on their resume: "${summary}":`
+    `As a career consultant make a bulleted list of jobs you would recommend to a student with the following summary on their resume: "${summary}":`
   );
   const _skills = await makePrompt(
-    `As a career consultant make a list of skills you think a student with the following summary possess: "${summary}":`
+    `As a career consultant make a bulleted list of top two skills you think a student with the following summary possess: "${summary}":`
   );
   const skills = [];
   for (let skill of _jobs.split("-")) {
@@ -51,7 +51,7 @@ async function fromSummary(summary) {
 
 async function fromProblem(problem) {
   const _skills = await makePrompt(
-    `"${problem}" In order for me to be able to solve the above problem make a bulleted list of skills i shoud have:`
+    `"${problem}" In order for me to be able to solve the above problem make a bulleted list of top two skills i shoud have:`
   );
   const _jobs = await makePrompt(
     `"${problem}" Make a bulleted list of professionals who can solve the above problem:`
