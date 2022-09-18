@@ -6,6 +6,7 @@ import Landing from './components/Landing';
 import Organization from './components/OrgPanel';
 import Volunteer from './components/Volunteer';
 import PossibleCand from './components/PossibleCand';
+import SeeCauses from './components/SeeCause';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/organization" element={<Organization />} />
           <Route path="/volunteer" element={<Volunteer />} />
           <Route path="/matchuser" element={<PossibleCand />}/>
+          <Route path="/seecauses" element={<SeeCauses />} />
         </Routes>
       </BrowserRouter>
     </div>

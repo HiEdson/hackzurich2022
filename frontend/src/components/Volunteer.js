@@ -1,16 +1,19 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { VARIABLES } from "../variables";
-
+import { useNavigate } from "react-router-dom";
 const Volunteer = () => {
   const [vName, setvName] = useState();
   const [vEmail, setvEmail] = useState();
   const [vPassword, setvPassword] = useState();
   const [vDes, setvDes] = useState();
+  const [responseLoad, setResponseLoad] = useState(false);
+  const navigate = useNavigate()
 
   const newAcc = async () => {
     // Leon, use this function to submit the values entered by company
     let backend = VARIABLES.backend;
+    setResponseLoad(true)
     try {
       const resp = await axios.post(`${backend}/users/create`, {
         name: vName,
@@ -18,7 +21,11 @@ const Volunteer = () => {
         password: vPassword,
         description: vDes,
       });
-      if (resp.data.status == "done") console.log("user created successfully");
+      if (resp.data.status == "done"){
+        setResponseLoad(false)
+        navigate('/seecauses', { state: { causes: resp.data.causes } })
+        console.log("user created successfully");
+      }
       else console.log("user not created");
     } catch (e) {
       console.log("error", e);
@@ -95,6 +102,7 @@ const Volunteer = () => {
         </div>
         <div className="text-center">
           <button className="btn btn-primary mt-5 w-25" onClick={newAcc}>
+            <span class={responseLoad ? "spinner-border spinner-border-sm" : ""} role="status" aria-hidden="true"> </span>
             See causes that match with you
           </button>
         </div>
