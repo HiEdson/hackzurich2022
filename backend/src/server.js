@@ -16,6 +16,6 @@ app.use("/users", usersRoute);
 app.use("/skills", skillsRoute);
 app.use("/causes", causesRoute);
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log("started listening at 5000");
 });

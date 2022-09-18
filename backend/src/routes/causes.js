@@ -9,7 +9,7 @@ router.post("/create", async (req, res) => {
   const { title, description, email, name } = req.body;
   const causesCollection = getCollection("causes");
   const skills = await fromProblem(description);
-  const users = [];
+  let users = [];
   try {
     const ref = await addDoc(causesCollection, {
       title,

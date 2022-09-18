@@ -25,8 +25,8 @@ async function makePrompt(prompt, max_tokens = 100) {
   if (choices?.[0]?.text) text = choices?.[0]?.text;
   return text
     .replace(/[^\w- ]/g, "")
-    .replace(/\s+/, " ")
-    .replace(/\d/, "")
+    .replace(/\s+/g, " ")
+    .replace(/\d/g, "")
     .toLowerCase();
 }
 

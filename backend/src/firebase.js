@@ -29,6 +29,7 @@ function getCollection(name) {
 }
 
 async function getCausesFromId(causes_id) {
+  if (causes_id.length <= 0) return [];
   const causes = [];
   const q = query(
     getCollection("causes"),
@@ -40,6 +41,7 @@ async function getCausesFromId(causes_id) {
 }
 
 async function getUsersFromId(users_id) {
+  if (users_id.length <= 0) return [];
   const users = [];
   const q = query(getCollection("users"), where(documentId(), "in", users_id));
   const snapshots = await getDocs(q);
