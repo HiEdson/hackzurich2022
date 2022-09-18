@@ -35,6 +35,8 @@ const PossibleCand = () => {
                     {user.skills.slice(0, 4).map((skill) => (
                       <span class="badge rounded-pill bg-success">{skill}</span>
                     ))}
+                    <br/>
+                    <div className="badge bg-secondary">x% Match</div>
                   </div>
                 </div>
               </div>

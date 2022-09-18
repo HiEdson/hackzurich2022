@@ -27,9 +27,10 @@ const SeeCauses = () => {
                   <div class="card-body">
                     <h4 class="card-title">{cause.title}</h4>
                     <p class="card-text">{cause.description}</p>
-                    <div>
+                    <div className="mb-1">
                       <i class="bi bi-building"></i>
                       {cause.name}
+                    <div className="badge bg-secondary" style={{marginLeft:"10px"}}>x% Match</div>
                     </div>
                     <a href="#" class="btn btn-primary">
                       Contact {cause.name}
