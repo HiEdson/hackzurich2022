@@ -1,0 +1,9 @@
+/* .PossibleCand {boder: 2px solid red} */
+.PossibleCand{
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 0 11px rgb(33 33 33 / 20%);
+}
+.PossibleParText span{
+    margin-right: 2%;
+}

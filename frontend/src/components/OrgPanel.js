@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import axios from "axios";
 import { VARIABLES } from "../variables";
 import "./OrgPanel.css";
+import { useNavigate } from "react-router-dom";
 const Organization = () => {
   const [openForm, setOpenForm] = useState(false);
   const [compName, setCompName] = useState("");
   const [compEmail, setCompEmail] = useState("");
   const [causeTitle, setCauseTitle] = useState("");
   const [causeDes, setCauseTDes] = useState("");
+  const [responseLoad, setResponseLoad] = useState(false);
+  const navigate = useNavigate()
 
   const submitCause = async () => {
     let backend = VARIABLES.backend;
+    setResponseLoad(true)
     try {
       const resp = await axios.post(`${backend}/causes/create`, {
         name: compName,
@@ -18,7 +22,12 @@ const Organization = () => {
         title: causeTitle,
         description: causeDes,
       });
-      if (resp.data.status == "done") console.log("successfully created cause");
+      if (resp.data.status == "done"){
+        console.log("successfully created cause");
+        setResponseLoad(false)
+        console.log(resp.data.users)
+        navigate('/matchuser', { state: { users: resp.data.users }})
+      }
       else console.log("error occured while creating cause");
     } catch (e) {
       console.log("error", e);
@@ -89,6 +98,7 @@ const Organization = () => {
         ></textarea>
       </div>
       <button className="btn btn-primary" onClick={submitCause}>
+        <span class={responseLoad ? "spinner-border spinner-border-sm" : ""} role="status" aria-hidden="true"> </span>
         Let's solve it
       </button>
       <button

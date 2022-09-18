@@ -1,6 +1,6 @@
 require("dotenv").config();
 const { algoliasearch } = require("algoliasearch");
-
+console.log(process.env.ALGOLIA_APP)
 const client = algoliasearch(process.env.ALGOLIA_APP, process.env.ALGOLIA_KEY);
 
 async function userSkills(userid, skills) {

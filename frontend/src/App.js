@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Landing from './components/Landing';
 import Organization from './components/OrgPanel';
 import Volunteer from './components/Volunteer';
+import PossibleCand from './components/PossibleCand';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Landing />}></Route>
           <Route path="/organization" element={<Organization />} />
           <Route path="/volunteer" element={<Volunteer />} />
+          <Route path="/matchuser" element={<PossibleCand />}/>
         </Routes>
       </BrowserRouter>
     </div>
